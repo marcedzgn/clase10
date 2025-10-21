@@ -120,30 +120,30 @@
                         //si es que dice Mexico en el place
                         if (t.properties.place.includes("Mexico")) {
                             mexicanos.innerHTML += `<tr>
-                            <td>…</td>
-                            <td>…</td>
-                            <td>…</td>
-                            <td>…</td>
+                            <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
+                            <td>${tiempo(t.properties.time)}</td>
+                            <td>${magnitud(t.properties.mag)}</td>
+                            <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
                             conteoMexicanos++;
                         }
                         //si es que dice Japan en el place
                         if (t.properties.place.includes("Japan")) {
                             japoneses.innerHTML += `<tr>
-                            <td>…</td>
-                            <td>…</td>
-                            <td>…</td>
-                            <td>…</td>
+                            <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
+                            <td>${tiempo(t.properties.time)}</td>
+                            <td>${magnitud(t.properties.mag)}</td>
+                            <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
                             conteoJaponeses++;
                         }
                         //si es que dice Russia en el place
                         if (t.properties.place.includes("Russia")) {
                             rusos.innerHTML += `<tr>
-                            <td>…</td>
-                            <td>…</td>
-                            <td>…</td>
-                            <td>…</td>
+                            <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
+                            <td>${tiempo(t.properties.time)}</td>
+                            <td>${magnitud(t.properties.mag)}</td>
+                            <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
                             conteoRusos++;
                         }
