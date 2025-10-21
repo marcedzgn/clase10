@@ -70,7 +70,7 @@
                 </thead>
                 <tbody id="mx"></tbody>
             </table>
-            <h2>En Rusia</h2>
+            <h2>En Perú</h2>
             <table>
                 <thead>
                     <tr>
@@ -80,7 +80,7 @@
                         <th>🌊 tsunami</th>
                     </tr>
                 </thead>
-                <tbody id="ru"></tbody>
+                <tbody id="pe"></tbody>
             </table>
             <h2>Resumen</h2>
             <p>Registros sobre 2.5 M de la última semana:</p>
@@ -93,12 +93,12 @@
             const chilenos = document.getElementById("cl");
             const mexicanos = document.getElementById("mx");
             const japoneses = document.getElementById("jp");
-            const rusos = document.getElementById("ru");
+            const peruanos = document.getElementById("pe");
 
             var conteoChilenos = 0;
             var conteoMexicanos = 0;
             var conteoJaponeses = 0;
-            var conteoRusos = 0;
+            var conteoPeruanos = 0;
 
             async function datos(url) {
                 try {
@@ -137,15 +137,15 @@
                         </tr>`;
                             conteoJaponeses++;
                         }
-                        //si es que dice Russia en el place
-                        if (t.properties.place.includes("Russia")) {
-                            rusos.innerHTML += `<tr>
+                        //si es que dice Peru en el place
+                        if (t.properties.place.includes("Peru")) {
+                            peruanos.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
                             <td>${tiempo(t.properties.time)}</td>
                             <td>${magnitud(t.properties.mag)}</td>
                             <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
-                            conteoRusos++;
+                            conteoPeruanos++;
                         }
                     });
 
@@ -155,7 +155,7 @@
 
                     document.getElementById("viz").innerHTML += `<g transform="translate(50)"><circle cx="10" cy="25" r="${conteoMexicanos / 2}" fill="darkmagenta"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoMexicanos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">México</text><g>`;
 
-                    document.getElementById("viz").innerHTML += `<g transform="translate(75)"><circle cx="10" cy="25" r="${conteoRusos / 2}" fill="darkmagenta"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoRusos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Rusia</text><g>`;
+                    document.getElementById("viz").innerHTML += `<g transform="translate(75)"><circle cx="10" cy="25" r="${conteoPeruanos / 2}" fill="darkmagenta"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoPeruanos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Perú</text><g>`;
                 } catch (error) {
                     console.error("Error al cargar los datos:", error);
                 }
