@@ -137,7 +137,7 @@
                         </tr>`;
                             conteoJaponeses++;
                         }
-                        //si es que dice Peru en el place
+                        //si es que dice Perúi en el place
                         if (t.properties.place.includes("Peru")) {
                             peruanos.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
@@ -170,10 +170,18 @@
             }
 
             function tiempo(x) {
-                var unix = x;
-                var dato = new Date(unix);
-                return dato.toISOString();
-            }
+                const date = new Date(x);
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                const hour = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                const seconds = String(date.getSeconds()).padStart(2, '0');
+
+                return `${day}/${month}/${year} ${hour}:${minutes}:${seconds}`;
+}
+
+
 
             function tsunami(x) {
                 var mensaje = "<span>Sin alerta</span>";
