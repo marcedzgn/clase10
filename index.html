@@ -252,7 +252,7 @@
                 </thead>
                 <tbody id="ru"></tbody>
             </table>
-            <div class="mapas" id="mapaRS"></div>
+            <div class="mapas" id="mapaRU"></div>
             <h2>Resumen</h2>
             <p>Registros sobre 2.5 M de la última semana:</p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" id="viz"></svg>
@@ -279,7 +279,7 @@
                     console.log(temblores);
 
                     //acá meto el mapa de Chile
-                    const mapaChile = L.map("mapaCL").setView([-33.4422116,-70.6406473], 17);
+                    const mapaChile = L.map("mapaCL").setView([-33.4422116,-70.6406473], 3);
                     const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
                         maxZoom: 19,
                         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -299,7 +299,7 @@
                         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                     }).addTo(mapaMexico);
                     //acá meto el mapa de Rusia
-                    const mapaRusia = L.map("mapaRS").setView([55.5807298,36.7259295], 3);
+                    const mapaRusia = L.map("mapaRU").setView([52.9238141,158.4300667], 3);
                     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
                         maxZoom: 19,
                         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -327,6 +327,7 @@
                             <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
                             conteoMexicanos++;
+                            L.marker([t.geometry.coordinates[1], t.geometry.coordinates[0]]).addTo(mapaMexico).bindPopup(t.properties.place);
                         }
                         //si es que dice Japan en el place
                         if (t.properties.place.includes("Japan") && t.properties.mag > 3.9) {
@@ -337,6 +338,7 @@
                             <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
                             conteoJaponeses++;
+                            L.marker([t.geometry.coordinates[1], t.geometry.coordinates[0]]).addTo(mapaJapon).bindPopup(t.properties.place);
                         }
                         //si es que dice Russia en el place
                         if (t.properties.place.includes("Russia") && t.properties.mag > 3.9) {
@@ -347,6 +349,7 @@
                             <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
                             conteoRusos++;
+                            L.marker([t.geometry.coordinates[1], t.geometry.coordinates[0]]).addTo(mapaRusia).bindPopup(t.properties.place);
                         }
                     });
 
