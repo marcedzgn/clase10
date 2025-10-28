@@ -257,7 +257,7 @@
             <p>Registros sobre 2.5 M de la última semana:</p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" id="viz"></svg>
             <footer>
-                <p>Desarrollado por <a href="#" target="_blank">Marcelo Cortez</a> &copy; 2025</p>
+                <p>Desarrollado por <a href="https://github.com/marcedzgn" target="_blank">Marcelo Cortez</a> &copy; 2025</p> 
             </footer>
         </div>
         <script>
@@ -307,7 +307,7 @@
 
                     temblores.forEach((t) => {
                         //si es que dice Chile en el place
-                        if (t.properties.place.includes("Chile") && t.properties.mag > 3.9) {
+                        if (t.properties.place.includes("Chile")) {
                             chilenos.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
                             <td>${tiempo(t.properties.time)}</td>
@@ -319,7 +319,7 @@
                             L.marker([t.geometry.coordinates[1], t.geometry.coordinates[0]]).addTo(mapaChile).bindPopup(t.properties.place);
                         }
                         //si es que dice Mexico en el place
-                        if (t.properties.place.includes("Mexico") && t.properties.mag > 3.9) {
+                        if (t.properties.place.includes("Mexico") && !t.properties.place.includes("New Mexico")) {
                             mexicanos.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
                             <td>${tiempo(t.properties.time)}</td>
@@ -330,7 +330,7 @@
                             L.marker([t.geometry.coordinates[1], t.geometry.coordinates[0]]).addTo(mapaMexico).bindPopup(t.properties.place);
                         }
                         //si es que dice Japan en el place
-                        if (t.properties.place.includes("Japan") && t.properties.mag > 3.9) {
+                        if (t.properties.place.includes("Japan")) {
                             japoneses.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
                             <td>${tiempo(t.properties.time)}</td>
@@ -341,7 +341,7 @@
                             L.marker([t.geometry.coordinates[1], t.geometry.coordinates[0]]).addTo(mapaJapon).bindPopup(t.properties.place);
                         }
                         //si es que dice Russia en el place
-                        if (t.properties.place.includes("Russia") && t.properties.mag > 3.9) {
+                        if (t.properties.place.includes("Russia")) {
                             rusos.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
                             <td>${tiempo(t.properties.time)}</td>
@@ -352,28 +352,28 @@
                             L.marker([t.geometry.coordinates[1], t.geometry.coordinates[0]]).addTo(mapaRusia).bindPopup(t.properties.place);
                         }
                     });
-
+                    const divido= 12 ;
                     document.getElementById("viz").innerHTML = `<g><circle cx="10" cy="25" r="${
-                        conteoChilenos / 2
+                        conteoChilenos / divido
                     }" fill="#2A86BF"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoChilenos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Chile</text><g>`;
 
                     document.getElementById("viz").innerHTML += `<g transform="translate(25)"><circle cx="10" cy="25" r="${
-                        conteoJaponeses / 2
+                        conteoJaponeses / divido
                     }" fill="#2A86BF"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoJaponeses}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Japón</text><g>`;
 
                     document.getElementById("viz").innerHTML += `<g transform="translate(50)"><circle cx="10" cy="25" r="${
-                        conteoMexicanos / 2
+                        conteoMexicanos / divido
                     }" fill="#2A86BF"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoMexicanos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">México</text><g>`;
 
                     document.getElementById("viz").innerHTML += `<g transform="translate(75)"><circle cx="10" cy="25" r="${
-                        conteoRusos / 2
+                        conteoRusos / divido
                     }" fill="#2A86BF"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoRusos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Rusia</text><g>`;
                 } catch (error) {
                     console.error("Error al cargar los datos:", error);
                 }
             }
 
-            datos("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson");
+            datos("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson");
 
             function magnitud(x) {
                 var numero = x;
