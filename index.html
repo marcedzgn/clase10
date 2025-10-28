@@ -207,6 +207,9 @@
                 </thead>
                 <tbody id="jp"></tbody>
             </table>
+            
+            <div class="mapas" id="mapaJP"></div>
+            
             <h2>En México</h2>
             <table>
                 <thead>
@@ -227,6 +230,8 @@
                 </thead>
                 <tbody id="mx"></tbody>
             </table>
+            
+            <div class="mapas" id="mapaMX"></div>
             <h2>En Rusia</h2>
             <table>
                 <thead>
@@ -247,11 +252,12 @@
                 </thead>
                 <tbody id="ru"></tbody>
             </table>
+            <div class="mapas" id="mapaRS"></div>
             <h2>Resumen</h2>
             <p>Registros sobre 2.5 M de la última semana:</p>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" id="viz"></svg>
             <footer>
-                <p>Desarrollado por <a href="#" target="_blank">Nombre Apellido</a> &copy; 2025</p>
+                <p>Desarrollado por <a href="#" target="_blank">Marcelo Cortez</a> &copy; 2025</p>
             </footer>
         </div>
         <script>
@@ -272,12 +278,32 @@
                     let temblores = data.features;
                     console.log(temblores);
 
-                    //acá meto el mapa
-                    const mapaChile = L.map("mapaCL").setView([-33.4488897, -70.6692655], 3);
+                    //acá meto el mapa de Chile
+                    const mapaChile = L.map("mapaCL").setView([-33.4422116,-70.6406473], 17);
                     const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
                         maxZoom: 19,
                         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
                     }).addTo(mapaChile);
+                    
+                    //acá meto el mapa de Japón
+                    const mapaJapon = L.map("mapaJP").setView([35.5085647,139.1104353], 3);
+                    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    }).addTo(mapaJapon);
+                    
+                    //acá meto el mapa de México
+                    const mapaMexico = L.map("mapaMX").setView([15.4508006,-93.1655738], 3);
+                    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    }).addTo(mapaMexico);
+                    //acá meto el mapa de Rusia
+                    const mapaRusia = L.map("mapaRS").setView([55.5807298,36.7259295], 3);
+                    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    }).addTo(mapaRusia);
 
                     temblores.forEach((t) => {
                         //si es que dice Chile en el place
